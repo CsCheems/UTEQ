@@ -40,6 +40,7 @@ namespace UTEQ.Controllers
             //IEnumerable<SelectListItem> modalidadDropDown = _db.Modalidad.Select (c=> new SelectListItem
             //{
             //    Text = c.nombreModalidad,
+
             //    Value = c.Id.ToString()
             //});
             //ViewBag.modalidadDropDown = modalidadDropDown;
