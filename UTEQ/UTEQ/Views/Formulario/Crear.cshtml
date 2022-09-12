@@ -1,0 +1,155 @@
+﻿@model UTEQ.Models.FormularioUsuario
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Crear">
+    <div class="border p-3 ">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+
+        <div class="form-group row">
+            <center><h2 class="text-info pl-3">Nueva Categoria</h2></center>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="NombreU" class="form-label">Nombre completo</label>
+                    <input asp-for="NombreU" class="form-control" />
+                    <span asp-validation-for="NombreU" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="CorreoU" class="form-label">Correo</label>
+                    <input asp-for="CorreoU" class="form-control" />
+                    <span asp-validation-for="CorreoU" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="whats" class="form-label">Número WhatsApp</label>
+                    <input asp-for="whats" class="form-control" />
+                    <span asp-validation-for="whats" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="otroTelefono" class="form-label">Otro teléfono</label>
+                    <input asp-for="otroTelefono" class="form-control" />
+                    <span asp-validation-for="otroTelefono" class="text-danger"></span>
+                </div>
+            </div>
+
+           
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label class="form-label">¿Eres egresado??</label>
+                    <select asp-for="egresado" class="form-select">
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="egresadoMod" class="form-label">¿De que modalidad? TSU/lICENCIATURA/INGENIERÍA</label>
+                    <input asp-for="egresadoMod" class="form-control" />
+                    <span asp-validation-for="egresadoMod" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="carrera" class="form-label">Carrera   (Colocar "Ninguna" en caso de no tener)</label>
+                    <input asp-for="carrera" class="form-control" />
+                    <span asp-validation-for="carrera" class="text-danger"></span>
+                </div>
+            </div>
+
+  
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label class="form-label">¿Eres estudiante?</label>
+                    <select asp-for="estudiante" class="form-select">
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+               
+            </div>
+
+       
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label class="form-label">¿Eres docente o administrativo?</label>
+                    <select asp-for="docente" class="form-select">
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label class="form-label">¿Eres público en general?</label>
+                    <select asp-for="publico" class="form-select">
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+
+
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <label asp-for="sugerencia" class="form-label">Curso que quieras tomar</label>
+                    <input asp-for="sugerencia" class="form-control" />
+                    <span asp-validation-for="sugerencia" class="text-danger"></span>
+                </div>
+            </div>
+
+            <br />
+            <center>
+                <div class="d-grid gap-2 d-md-block">
+                    <button type="submit" class="btn btn-primary">Registrarme</button>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+            </center>
+        </div>
+
+
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+

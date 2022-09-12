@@ -1,0 +1,191 @@
+﻿@model UTEQ.Models.ViewModels.CursosVm
+@{
+    var titulo = "Curso nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data" >
+
+    @if (Model.Cursos.Id!=0)
+    {
+        titulo = "Editar Curso";
+        <input asp-for="Cursos.Id" hidden />
+    }
+
+
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class=" text-danger"></div>
+        <div class=" row">
+            <center><h2 style="color:#527FD5">@titulo</h2></center>
+    </div>
+
+
+
+        <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                    <div class="col-md-8">
+                    <label asp-for="Cursos.nombrecurso" class="form-label">Curso</label>
+                    <input asp-for="Cursos.nombrecurso" class="form-control" />
+                    <span asp-validation-for="Cursos.nombrecurso" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.ModalidadId" class="form-label">Modalidad</label>
+                    <select asp-for="Cursos.ModalidadId" asp-items="@Model.ModalidadLista" class="form-select">
+                        <option disabled selected>--Seleccione una modalidad</option>
+                    </select>
+                </div>
+            </div>
+
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.fecha" class="form-label">Fecha</label>
+                    <input asp-for="Cursos.fecha" class="form-control" />
+                    <span asp-validation-for="Cursos.fecha" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.horario" class="form-label">Horario</label>
+                    <input asp-for="Cursos.horario" class="form-control" />
+                    <span asp-validation-for="Cursos.horario" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.lugar" class="form-label">Lugar</label>
+                    <input asp-for="Cursos.lugar" class="form-control" />
+                    <span asp-validation-for="Cursos.lugar" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.totalhoras" class="form-label">Horas</label>
+                    <input asp-for="Cursos.totalhoras" class="form-control" />
+                    <span asp-validation-for="Cursos.totalhoras" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.costo" class="form-label">Costo</label>
+                    <input asp-for="Cursos.costo" class="form-control" />
+                    <span asp-validation-for="Cursos.costo" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.costopref" class="form-label">Costo preferencial</label>
+                    <input asp-for="Cursos.costopref" class="form-control" />
+                    <span asp-validation-for="Cursos.costopref" class="text-danger"></span>
+                </div>
+            </div>
+
+
+                    <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.urltemario" class="form-label">URL temario</label>
+                    <input asp-for="Cursos.urltemario" class="form-control" />
+                    <span asp-validation-for="Cursos.urltemario" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.requisitos" class="form-label">Requisitos</label>
+                    <textarea asp-for="Cursos.requisitos" class="form-control summernote "></textarea>
+                    <span asp-validation-for="Cursos.requisitos" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.criterioeval" class="form-label">Criterio de Evaluacion</label>
+                    <textarea asp-for="Cursos.criterioeval" class="form-control summernote "></textarea>
+                    <span asp-validation-for="Cursos.criterioeval" class="text-danger"></span>
+                </div>
+            </div>
+
+                    <div class="row justify-content-md-center ">
+                <div class="col-md-8">
+                    <label asp-for="Cursos.ImagenUrl" class="form-label">Imagen</label>
+                    <input type="file" name="files" id="imagenId" class="form-control" />
+                </div>
+            </div>
+
+             <br />
+
+             @*//imagen*@
+             <div class="row justify-content-md-center ">
+            <div class="col-4">
+             @if (Model.Cursos.Id != 0)
+
+                {
+                  <img src="@ED.ImagenRuta@Model.Cursos.ImagenUrl" width="75%" style="border-radius:5px; border:1px solid #bbb" />
+                }
+                            
+
+            </div>
+            </div>
+            @*//imagen*@
+
+
+
+
+
+            <br />
+            <br />
+
+                <center> 
+                <div class="d-grid gap-2 d-md-block">
+                    @if (Model.Cursos.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return validarImagen()" class="btn btn-primary">Crear Nuevo</button>
+                    }
+                    <a asp-controller="Cursos" asp-action="Index" class="btn btn-success">Regresar</a>
+                </div>
+                    </center>
+                </div>
+
+        </div>
+    </div>
+  </div>
+        
+    
+    
+
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 250
+            });
+        });
+            function validarImagen()
+   {
+            if (document.getElementById("imagenId").value == "") {
+                swal("Error", "Seleccione una Imagen!", "error");
+                return false;
+            }
+            return true;
+   }
+ </script>
+}

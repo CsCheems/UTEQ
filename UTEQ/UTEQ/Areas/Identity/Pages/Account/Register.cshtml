@@ -1,0 +1,88 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+
+<div class="row ">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2 style="color:#1019A6">Crear una cuenta nueva.</h2>
+            <img class="profile-img" src="https://cdn-icons-png.flaticon.com/512/2499/2499318.png" alt="">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-floating">
+                <input asp-for="Input.NombreCompleto" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.NombreCompleto"></label>
+                <span asp-validation-for="Input.NombreCompleto" class="text-danger"></span>
+            </div>
+
+            <br />
+
+
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            
+            <br />
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registrar</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-6">
+        <section>
+
+            
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                <div>
+                        <br />
+                        <br />
+                        <br />
+                        <hr />
+                        <img class="logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAxlBMVEUVSH////8UR4AoVooZTIMeUoMAQXsAPHkAP3oAPXkNRH0ANXQAQnwPRnxMcZkAN3fZ4eY9ZY8AMXGlt8iaqsAAO3YAPnzH094AN3SbrsEAQX10iqwANni0wtHy9/ni6OmKnrY8YI69y9jQ2uN5kayqu8oAK2/Dz9rt8fRphaUvVoWCmbFAY5FKbJVgfJ7V3+eUp7l9lLRVd5oAJm5yjagjUn+brMQUSXsAMHVGaI2Mnrq0w81Tc59gf54AIG1geJx4k6k0XZAIPNk6AAATSElEQVR4nO2cC3uiutqGIUIIMQiKHEJFOY4CgtZx1Xa6urv7///UFxCsttYeZmbtYX08V+caCwq5kzfvIcFyvX+5fE7g/tVSev92QtARtl4dYfvVEbZfHWH71RG2Xx1h+9URtl8dYfvVEbZfHWH71RG2Xx1h+9URtl8dYfvVEbZfHWH71RG2Xx1h+9URtl8dYfvVEbZfHWH71RG2Xx1h+9URtl8dYfvVEbZfHWH71RG2Xx1h+9URtl8dYfvVEbZfHWH71RG2Xz9FCMAvbMnv0k8Rik8tQPwZQpgFBge4A+WfiftVQiwjDBwIQA+KaEdgSScqv7hxv0RfJIQFpTlc6jJcxHPXTDKBIS7+SMRPEyqYYZg03iQU+4EtTsVv8dz7YckA9/5IM/0kITDTqycZL4M+IRCn836hSyYdq7fz1HaXGDt/3ih+jhCY65CG1H4Yy2wqwnR+O46g5A6xagFHm6B8O0S/r61f0+cIcT6fGLfzPA1lNCkizhrd32E7xMBeja7ohAbefP2nIX6cENg2wdeZrDjR2s5CT7d8bg03AjAsA/Ss7/OnwULH3+ZL/Htb/Fl9mBD7VlgYj+6E2DQhTprkDuYQh5l3IYBLk541GSfL+Xi8Jfi35ToAY4gQguQTN/g4ofUXXuWSS3Nvzm4AnJOhAqQ3QNH6tr9ZLY0iENC5JpiSKUnIPDplyuwI+zmSLBtM7IVdSVJLSXLVBMlMN1eZlyWDniR/1Kd9kBD0wrGEUw2ZkZ4pZ3sQg12wHnii6S9098xs3CG613NQkcf0WPpe8V7uXkFQ/qOII2pOtSm/13RF72zyKwk55M1vObgNEJHhm9fCkR4BSRvYqrvBr7K4ft264WH0R02D35Vmk2L14piV9z8yjh8hBLIgwJH1wGbd8KTVr3wKNCEKC8TZcYEx2f06wpVtvwRkcndv9vanCIGiWxYlWPOVEyasDl+7TdDbmhzaWAgnxXx30h8/SRieObwYGL+CENG1xOaQ+hidGL7tz/niTGQgnPKk7ZTbuSaenv0NhDyf2D9PCGBoAGDOFXIygErMrj+uHEoZHECp+gN4NST2ONBPTfr3EPLb90bxA2PohAoGcP58YMfKJqFqXFD2ICYEOIQ4DqzHGAiKGccj2Tm9zs95mppwMY91N1wcnSreSaLeJQQK8lxmqWPz2XEZ2Tbl+bnFz9hBJ5tp6aPGNNvWEx+QwFMdZ3jqCF4Tyk2A0HW3PsleloHj5uZmzOQ1uoIqI1yMc0ll0XJCiuBAOP3rchL1HiHhNhh6luXBZ5Oz53zwnU0Bj5/2MNcP+dl3rbqZ1xCBgYyKlbuK5IuE3CHMq8P6pFHGfJnlLdW//csyi+EYobuzm48SdTBrEMPLQeMdQpxr14RTETw2BTXgZ7chr7NWbTBmozlm/wIG6R/ajoGgKZJq5Uc3P0OIESyFOTyoT7Jsgtm7w6z+RTRVw0g9OrQj5rxBjC7a6TuEdihCrpedhh3k8byo86sRz18jFLE2e/yCDWOoPr8HZpnMwWR8dPPXhCS5jq6ZBviZkCPFNinln44MHkovWn7bWOrifJL1IULQC5ir2gWn+RFmg/eY8FND411JnVd0rs/z2REOTqjB2d5x37wmbPwjlY7GsF+bX/TCUb2abQBrHxnEd8ZQCG8B8V355KBiMMMUWVNdPpTEKa8zI92wcT0J8Maq6D9owkUrVa39kfEJYd3uqxeEr0XyZibKF971DqF074l+mJ/2nyKFvGVPZ37ET3HBph+j+6bxVv/kXbs4vAfHH/wkYXJrP+uFhTZXjOtPpRfc6bu+lFrzwT6u21LjTyWdX8AtQkNe/+7yi2/zacyGNDqdrUA2pHeytouEWmhZYaP7s3EdNx54eyE/fTceyrJUtUgRNTcS+3I5JZ2ETe8MAXE6K2PvShEkNozvrQh/kvBEs/75S9bvjc+P8fuEGOJDq7FfXmqlD6CE1A176UoSra9vlyetMr8BGErySXZHDl7qNxDK+v60dSE7vURo3m2LQzIKhPpmUysrzX+xhaiuWFmTVVbb9CRJFYZbPTxaqUFpwkLBbyNE2cXT7xGq5RCFQpNPMwdKI6vOCKdUMdl8lCuxFhM2I4IoXlWn5+ahjzKWeYY95XcRkmJ/ejH6CiF+3JtgM8dt1tZEVv0frFn3qVG1GmBS27HaJJb8NIyb0hcvqyOB/bsI8d/1Pb9EWNv4rEmf+tX4aPHDtyxXq0YSJOab1Kk8LU6nZeI/LvAI+Q1DmfyUGv084fmJRpKfGUO09yNaY3K4N94bIUJ75yENqgZqUeXIbNYhm7QYl/kpP9hDwOy4hz9JuM4PGgyeIzKQ62S9PCLXXahNvkK4d56812REmBYmfKThlBjlxYHhNR3slnEPiDTJm3pPG1WGCtLqgC59hfBKwkc6tHep1wtzQ9bPUj035l/zpXDDMsT1IdLYbABX9O8RDuJyIQ1uy6bly4wdpizl3mGZqDo/c73hmiUk+xAMB+xsXNv5L8naAGlKihnzAGrt+PQLiemlaEEmpP8cStX6zuGUtxgRmPJTUcVYctjxskgSJAzViZomurW/fSncF2CT2VwgND+elz7n28GkmYb8w4UK8WLEP1mdx2IxDvdmuFI5yIqmpJqiJK0cruHqw8xdNesLmybQP19iVJ/KXxGuP0HIAlMzF7xvdW0yFb5K+OKtRLZ7A8+alr7bYPlo3fpRyGsIsCkx29c9i9DNBmdS4VFN/3yuWQPNPkMIzGbk+Dqn4ueXVqPeJAQYEyQbx7sMbEwd6fY/bukc7TmvOdW7MIOdAWCwbHyrud5mByUJKmc6tTHz7WHS3NbMifMBwsOvYKLzpzq3qPkuIUgHRfLjxnXFBhFDWRXyyKU3ZYCzGRbmgJ8U+S2DJUCm/BT9py+fbDydVE9G7SOoVOMrTSJ4XOO/RUiy59VM+XRlUVO5C3qL0PmvS2f00ZvXdYksLbf6fpYFPG9XwTzHCqt/p/6UDyROXpfpwNWTasPD+AFQKNhoTKhJkxdNg+wm3qTK+4R2aImNQeG/jpcT+ceLa/tvjiGxc/0W972rffpCm+m9ijeJJgDACsLVyEE+m+fMzAhn1s1duNFfjZeBGTU2K7cmdrb1Jdh1y2aqDdUCgzOExffRs+zSK03/eyvh8vkdIDXVfSn38rL3254GehFhMZFWDhOVXm86Xw9HtopJOSrlmM02HGL/VTPdYc61ycsbbynrxW41obUvP1QnvDXYYS49zCZX5t7L2jS78rsLmu8ABsJAf15LntmXd6Au5DS5NZJH7kPV2rKa1kZiwQxVwVUmClCZT0wrJo8RKqlnPYz8LFiUa4z1JYZzK8dBWhuX/LyMu5gd2VmO3yWc9ZvIMp3NZien/L3FEATPk16IFtI6HFu0tvGy2p1VHeem/82MXYno7TuStTUn5e/fg0UQ9RjlIeIRyZa4wyIKvjvT9n2B/j6hbZ39MGvPfhk18rLB2fl4KR7KfuKr9exWcNXpKz0pt2QGVb/JXOGtE5F5m4UIAEb7LHHhbpqlL9zT3Sv1uWsl70wLtfJaP0HIR8xMsTe4vs4G50bxEiGAKt549Wmyuffy75Ne4jIj0eQ6KUOyA7Dw5PeALMQGM9SqH2orxan2mGn60VLfhL5q32KHTwi5twjf2HtiGjjgLsmTtbM+t+99gRBwj3qgWU2Rj0mezZvZ48lHUU9RFJMwk9XiRFTzH8zR780F6ZvbWAiO1yL70YvtplCsWvWlMWwasxDJoMh/0JF3Lg26QIhzTSdqEpv7kr2upvhZsNVY0o0P+yrMT9w+1LN/OtMfDovfRiBIQZ+eZByyHxy1cerVYfzMmvcpTB+k45MgyGuZ0gyrZaeen0fL7NxEvDSGUixgrj9vshqWtSzc6x5jYtHIRQDWj0vkxC9vtUripgn1bgXK6JKaoXjab1JvbFUDuQi28NmCe0Ildi/hnACnSOiO1vFoMV/7EsK95oZ09OANC3o+sl8gREEPA9s65G27Xl8lWKmWS1c9uKnHlCPlik48cqR+WgULPt433JSSKAw3LzsWI3VEREEeScdnADhsI4Mzqt6jIKOPWHuN0b7Eh83I8w+2mAzOPsRz0dPA6F4x1vFh5azJONWA175hp6x9Z9rMM0GPRbeyZiwbvxvQsFr9Bqa+vRVycP6pF/DV56bA8VPJh7xvujxaB3jxgUvVE4zCFQX4hQ8GrPhdP/LTJ2a1SjLVJXvwxIr75raKtF8kZ2l5vLoe/Yan3I76xklriW922OX6EE5UWVEeTltZ7Ri6vPZ9wQff7/nVbcAnycnGZy0sc9Yi/znEMw3HQ+75SR2Mj8347BUuV8A9BK/D8amhsSpoNlnwY+ZvoonHL+QZT8n53RGM3aPdS5Y1Kwopn+MABHAEQKwQLCuO4GAMCcLl+1kQhgjsOGxiNuWBA3omgIB9BMNe+WQ5t3PSNctikCCYO5Y3sxYC7i0D/QChRKNQ/6sxu/oT6ZSnzMs8sZxbhAzTd/nw+5S/f7E7YtuSjNKjNSIS+fBHGsncdTJcy3A9dPVkrMeipydJGuj6BjvJgPgu1VNMPCsa3+hConu64CnOlT9kr9JhQpyEelSRxuOxDtf9iB0V8SC58Ijb5Z2Zu3AhmsR0N0eI6Lra4y6fTghtgNngZazkm/OrF+tdi9C9uVo+b+2wWmop36Srv8mPaHkjpuPltT2hk7tMV/C1r/eJLsCYovzKTnUIEP2m21CMVdQTAjqK/NiQFX0ZQZ/acu5dJ4b6ZOh3awP5O4leKqAuZm1C7F8JyA+zYz8sseB3z3wNSwA8k5Nm/P0Tz/fGPH96HTMaC8X6eE8RZr5840c3wyzK/cxLh4G3oQFVem669XUEPb9Y62l+TSQW2ADt6976qiAsLNONlwx+IE6lwwgV7BChN6xm3ubUW7KUFOe69/i2nV5ea0NsMgxXObO/A2NZ+pZKy8cVFE5ig/dtyj8M+Gl6vHwBOTRfInScRpFoOLrxf9jxOPpb0ql0d/Vtsk4ipwf1xKe3BuXiKKLLK1thYwj0kf6t39P7UBB0NQmeYlWG8TKy/fFEuvOixBbYm3PPRilYZ1FsvlkkvrvWZsyXkCPCc1K7W5XSVXc2ZyHQXFdLXrqo744MElHPdpbWaQgGTzFN/GskZkmOHgo4dNcbj3hLSrdJ6no0GUaq6pXzjbll5Ualayps9bG+u1Hk7CnXb3R/GHviFb2hgjmmY2qsJxn7L/VsIzm3uPdBQtPNDSPXiufN0vKZHsnkHLVMBch+h2oLj2kgK6RiSaXb00yYRVYMcPmNDVx6+fLH4ciOKA5mPw4pkwPCXlSPHxPOYTGAvZOUy1msglF2lQ/eOSyp4vbHHHYtDpavydvh4l1C3Auy+1CUhLxZ66rDT10/PZWZ793xwxCKEHnDb+O58PKmdU62f9OurEnq34HCKWKu1Fet4gtrNnjL8JTny3Bvv+vDhBxW5zGUijCwzuUNAGuLxDhOe3BqeVG4vd3eqy8iJBDKTFvYMTj4VyozYgUoO+ZVBBmTJGenqsjGgh0bJf98lvl5fWDNW0kRXmq9URGcex4AiNxJmABykMuIswSoeNmJlcIs1vWRp9MnoHrUi9VoqYyXLk3GNPbpeLwNKVdsIQkoNbd65v6iLxl96ClonM5SZkMWej8DEzhUPjagBj5QiscTC4JZb5L/yJbijgw81Riur5bKTX4lAI8U115PtHUV0VjCdDRe0hFE8a/5bsqH9i3INifcxFuP9AJf6ljmPAb3BrseUSyBe5lMsXioGNTzotTxfDxUb658Nob69eDGyhR6HXG68ajTxJwHxeZK4eybf5CQY/7LLCw7D1UjFaW3ICV/INtuwqqpjZW8XlCAWWoUUbabYLwcf4+86+ulQfNkZP8YeLdrVZV0+6bY6Gjs5TjuSym99CzXx/XRvSc80Ay06vWsYO6+UfEhN4hXQ0fD8jpenul/sqV03I/oOgUw0Wkopnr86Os3D1d4m3t0vfPSSJKTPJPXSq7r9J/zNPv3LUWVerdBMRl55TL4oWRQcG24cOzd2n5oFHOE5LPPQxJoQs6pvjTjyAZ5IkjGGEHM0jAMocNqCFgWHrCMfvLJd2v+CUIOkNxCu7DPYSFgVUuR1oelvNg7U6kMgFIwVPXeH/Xdro/vkKqrO6ysbIUMAxmn0/0KGiAsD58+lIiSOzBZ7EyxFL2dQv0P9GFCZelJLN+MRT8sMLGyyg8Adb82+KSU2Y1WpLEucXD90ErCslzgODmbzx9lNc6QVYZ/gPaFRvWQLvTjICq3peCfBPjpbzoTVvA7kauqYclyQshhJL37XO8/r698Wx3nDO2++kaMUVnpSWn4p+lL38cvl5TStErJTIvnF68Wff8kffmvRjQPZUrDAf4DbfNZP//XW/DHvsr5P1P392nar46w/eoI26+OsP3qCNuvjrD96gjbr46w/eoI26+OsP3qCNuvjrD96gjbr46w/eoI26+OsP3qCNuvjrD96gjbr46w/eoI26+OsP3qCNuvjrD96gjbr46w/eoI26+OsP3qCNuvjrD96gjbr46w/eoI26+OsP3qCNuv/x+E5/6q7b9IPU78l+vp/wAnBL9zqypWgAAAAABJRU5ErkJggg==" alt="">
+                   <p>
+                        Aprovecha nuestros cursos y talleres de Educación Continua en la UTEQ, impartidos por excelentes instructores y a precios muy accesibles.
+                        Pregunta por la modalidad en línea o presencial. Todos los participantes reciben constancia de la UTEQ con valor curricular.
+
+                    </p>
+                    
+                </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+    </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,54 @@
+﻿@model UTEQ.Models.ViewModels.HomeVM
+
+
+<div class="container">
+    <center><h2 style="color:#1019A6">Educación Continua</h2></center>
+    <br />
+    <br />
+    <div class="text-center">
+            <button class="btn btn-dark filter-button" data-filter="all">Todos</button>
+
+        @foreach (var modal in Model.Modalidads)
+        {
+            <button class="btn btn-outline-secondary filter-button" data-filter="@modal.nombreModalidad.Replace(' ','_')"> 
+             @modal.nombreModalidad
+            </button>
+        }
+
+    </div>
+    <br />
+   
+    
+        <div class="row">
+            @foreach (var cur in Model.Cursoss)
+            {
+                //Desplegar todos los cursos
+                <partial name="_CursosCard" model ="cur" />
+            }
+
+
+    </div>
+    
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $(".filter-button").click(function () {
+
+                var value = $(this).attr('data-filter');
+                if (value == "all") {
+                    $('.filter').show('1000');
+                }
+                else {
+                    $(".filter").not('.' + value).hide('3000');
+                    $('.filter').filter('.' + value).show('3000');
+
+                }
+            });
+
+        });
+    </script>
+}

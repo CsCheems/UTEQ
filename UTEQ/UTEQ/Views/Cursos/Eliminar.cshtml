@@ -1,0 +1,158 @@
+﻿@model UTEQ.Models.Cursos
+@{
+    var titulo = "¿Desea eliminar el curso?";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Eliminar">
+
+        <input asp-for="Id" hidden />
+    
+
+
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class=" text-danger"></div>
+        <div class=" row">
+            <center><h2 style="color:#D50E0E">@titulo</h2></center>
+        </div>
+
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+
+                        <div class="col-md-8">
+                            <label asp-for="nombrecurso" class="form-label">Curso</label>
+                            <input asp-for="nombrecurso" disabled class="form-control" />
+                         
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center  ">
+                        <div class="col-md-8">
+                            <label asp-for="ModalidadId" class="form-label">Modalidad</label>
+                            <input asp-for="ModalidadId" hidden d class="form-control" />
+                            <input asp-for="Modalidad.nombreModalidad" disabled class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-md-center ">
+                        <div class="col-md-8">
+                            <label asp-for="fecha" class="form-label">Fecha</label>
+                            <input asp-for="fecha" disabled class="form-control" />        
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <label asp-for="horario" class="form-label">Horario</label>
+                            <input asp-for="horario" disabled class="form-control" />                        
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center ">
+                        <div class="col-md-8">
+                            <label asp-for="lugar" class="form-label">Lugar</label>
+                            <input asp-for="lugar" disabled class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <label asp-for="totalhoras" class="form-label">Horas</label>
+                            <input asp-for="totalhoras" disabled class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center ">
+                        <div class="col-md-8">
+                            <label asp-for="costo" class="form-label">Costo</label>
+                            <input asp-for="costo" disabled class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center ">
+                        <div class="col-md-8">
+                            <label asp-for="costopref" class="form-label">Costo preferencial</label>
+                            <input asp-for="costopref" disabled class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <label asp-for="urltemario" class="form-label">URL temario</label>
+                            <input asp-for="urltemario" disabled class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center " hidden>
+                        <div class="col-md-8">
+                            <label asp-for="requisitos" class="form-label">Requisitos</label>
+                            <textarea asp-for="requisitos" disabled class="form-control summernote "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row  justify-content-md-center  " hidden>
+                        <div class="col-md-8">
+                            <label asp-for="criterioeval" class="form-label">Criterio de Evaluacion</label>
+                            <textarea asp-for="criterioeval" disabled class="form-control summernote "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center  " hidden>
+                        <div class="col-md-8">
+                            <label asp-for="ImagenUrl" class="form-label">Imagen</label>
+                            <input asp-for="ImagenUrl"  class="form-control" />
+                        </div>
+                    </div>
+
+                    <br />
+
+                    @*//imagen*@
+                    <div class="row justify-content-md-center ">
+                        <div class="col-4">
+                            @if (Model.Id != 0)
+
+                            {
+                                <img src="@ED.ImagenRuta@Model.ImagenUrl" width="75%" style="border-radius:5px; border:1px solid #bbb" />
+                            }
+
+
+                        </div>
+                    </div>
+                    @*//imagen*@
+
+
+
+
+
+                    <br />
+                    <br />
+
+                    <center>
+                        <div class="d-grid gap-2 d-md-block">
+                       
+                            
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <a asp-controller="Cursos" asp-action="Index" class="btn btn-success">Regresar</a>
+
+                        </div>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</form>
+
+@section Scripts {
+    @{<partial name="_ValidationScriptsPartial" />}
+   
+}
